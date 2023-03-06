@@ -1,8 +1,9 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Service = ({ service }) => {
-  const { title, img, price } = service;
+  const { _id, title, img, price } = service;
   return (
     <div className="card w-96 bg-base-100 shadow-xl rounded-md p-5">
       <figure className="">
@@ -14,9 +15,9 @@ const Service = ({ service }) => {
           <p className="text-base font-bold text-orange-400">
             Price: $ <span>{price}</span>
           </p>
-          <button>
+          <Link to={`/service/${_id}`}>
             <BsArrowRight className="text-lg text-orange-400" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
