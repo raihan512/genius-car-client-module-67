@@ -21,6 +21,14 @@ const Header = () => {
         </Link>
       </li>
       <li>
+        <Link
+          className="hover:bg-transparent focus:rounded-none"
+          to="/myorders"
+        >
+          My Orders
+        </Link>
+      </li>
+      <li>
         <Link className="hover:bg-transparent focus:rounded-none" to="/">
           Blog
         </Link>
