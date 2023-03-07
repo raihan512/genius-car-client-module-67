@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import checkoutImg from "../../../src/assets/images/checkout/checkout.png";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Checkout = () => {
+  const navigate = useNavigate();
   const { title, _id, price } = useLoaderData();
   const { user } = useContext(AuthContext);
   const handleOrderConfirm = (event) => {
@@ -23,6 +24,24 @@ const Checkout = () => {
       phone,
       message,
     };
+
+    fetch("http://localhost:5000/checkout", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          console.log(data);
+          alert("Your order has been placed");
+          navigate("/");
+        }
+      })
+      .catch((error) => console.error(error));
   };
   return (
     <div>
